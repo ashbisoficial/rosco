@@ -1,7 +1,7 @@
-// Set clásico del rosco de Pasapalabra: 25 letras (sin K ni W).
+// Alfabeto completo A-Z (26 letras, sin Ñ), para roscos en formato "gamer".
 export const ROSCO_LETTERS = [
-  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'L', 'M', 'N',
-  'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z',
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+  'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 ];
 
 // Plantilla de preguntas por defecto: el host las edita antes de crear la partida.
