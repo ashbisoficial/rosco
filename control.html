@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rosco — Panel de control</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/control.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>🎯 Panel de control del Rosco</h1>
+    <div id="roomBadge" class="room-badge" hidden>
+      Sala: <strong id="roomCodeLabel"></strong>
+      <button id="copyOverlayLink" type="button">Copiar enlace del overlay</button>
+    </div>
+  </header>
+
+  <!-- Pantalla de configuración: se arma la partida antes de empezar -->
+  <section id="setupScreen" class="panel">
+    <div class="setup-row">
+      <label>
+        Código de sala
+        <input id="roomInput" type="text" maxlength="12" placeholder="se genera solo si lo dejás vacío" />
+      </label>
+      <label>
+        Duración (segundos)
+        <input id="durationInput" type="number" min="30" step="10" value="240" />
+      </label>
+      <button id="loadSavedBtn" type="button">Cargar últimas preguntas guardadas</button>
+      <button id="importBtn" type="button">Importar JSON</button>
+      <button id="exportBtn" type="button">Exportar JSON</button>
+      <input id="importFile" type="file" accept="application/json" hidden />
+    </div>
+
+    <table class="letters-table">
+      <thead>
+        <tr>
+          <th>Letra</th>
+          <th>Tipo</th>
+          <th>Pregunta</th>
+          <th>Respuesta (referencia)</th>
+        </tr>
+      </thead>
+      <tbody id="setupTableBody"></tbody>
+    </table>
+
+    <button id="startGameBtn" type="button" class="primary">Crear partida y empezar a jugar</button>
+  </section>
+
+  <!-- Pantalla de juego: acá se controla el rosco en vivo -->
+  <section id="gameScreen" class="panel" hidden>
+    <div class="game-toolbar">
+      <div class="timer-controls">
+        <span id="timerLabel" class="timer-label">04:00</span>
+        <button id="timerStartBtn" type="button">▶️ Iniciar</button>
+        <button id="timerPauseBtn" type="button">⏸️ Pausar</button>
+        <button id="timerResetBtn" type="button">🔄 Reiniciar tiempo</button>
+      </div>
+      <div class="score-summary">
+        ✅ <span id="scoreCorrect">0</span>
+        &nbsp;❌ <span id="scoreWrong">0</span>
+        &nbsp;⏭️ <span id="scorePass">0</span>
+        &nbsp;⬜ <span id="scorePending">25</span>
+      </div>
+      <button id="newGameBtn" type="button">Nueva partida</button>
+    </div>
+
+    <p class="hint">
+      Hacé clic en una letra para activarla (se ve resaltada en el overlay), o navegá con
+      <kbd>↑</kbd>/<kbd>↓</kbd>. Resolvé con <kbd>C</kbd> correcto, <kbd>X</kbd> incorrecto,
+      <kbd>P</kbd> pasapalabra, y <kbd>Espacio</kbd> inicia/pausa el reloj.
+    </p>
+
+    <ul id="lettersList" class="letters-list"></ul>
+  </section>
+
+  <script type="module" src="js/control.js"></script>
+</body>
+</html>
