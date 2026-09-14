@@ -1,10 +1,10 @@
-import { ROSCO_LETTERS, clueTypeLabel } from './rosco-data.js?v=2';
-import { watchGame, computeRemainingSeconds, formatTime, computeScore } from './state.js?v=2';
+import { ROSCO_LETTERS, clueTypeLabel } from './rosco-data.js?v=3';
+import { watchGame, computeRemainingSeconds, formatTime, computeScore } from './state.js?v=3';
 
 const connectForm = document.getElementById('connectForm');
-const roscoStage = document.getElementById('roscoStage');
+const overlayContent = document.getElementById('overlayContent');
 const roscoCircle = document.getElementById('roscoCircle');
-const centerTimer = document.getElementById('centerTimer');
+const topTimer = document.getElementById('topTimer');
 const centerClue = document.getElementById('centerClue');
 const centerScore = document.getElementById('centerScore');
 const finalBanner = document.getElementById('finalBanner');
@@ -66,14 +66,14 @@ function renderState(state) {
 
 function tickTimer() {
   if (currentTimer) {
-    centerTimer.textContent = formatTime(computeRemainingSeconds(currentTimer));
+    topTimer.textContent = formatTime(computeRemainingSeconds(currentTimer));
   }
   requestAnimationFrame(tickTimer);
 }
 
 function connect(roomId) {
   connectForm.hidden = true;
-  roscoStage.hidden = false;
+  overlayContent.hidden = false;
   buildCircle();
   watchGame(roomId, renderState, (err) => {
     console.error('Error de sincronización con Firestore:', err);
