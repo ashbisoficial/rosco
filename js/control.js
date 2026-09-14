@@ -179,11 +179,18 @@ function resolveLetter(index, status) {
   const nextIndex = findNextPendingIndex(index);
   activeIndex = nextIndex;
 
-  updateGame(roomId, {
+  const updates = {
     letters,
     activeLetterId: nextIndex >= 0 ? letters[nextIndex].id : null,
     finished,
-  });
+  };
+
+  if (finished && localTimer.running) {
+    localTimer = { ...localTimer, running: false, remainingSeconds: computeRemainingSeconds(localTimer), startedAt: null };
+    updates.timer = localTimer;
+  }
+
+  updateGame(roomId, updates);
   renderGameList();
   renderScore();
 }
@@ -254,7 +261,8 @@ function startTicker() {
     const remaining = computeRemainingSeconds(localTimer);
     document.getElementById('timerLabel').textContent = formatTime(remaining);
     if (localTimer.running && remaining <= 0) {
-      pauseTimer();
+      localTimer = { ...localTimer, running: false, remainingSeconds: 0, startedAt: null };
+      updateGame(roomId, { timer: localTimer, finished: true });
     }
   }, 250);
 }
