@@ -6,7 +6,7 @@ import {
   updateDoc,
   onSnapshot,
 } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
-import { firebaseConfig } from './firebase-config.js';
+import { firebaseConfig } from './firebase-config.js?v=2';
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);

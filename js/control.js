@@ -1,4 +1,4 @@
-import { buildDefaultLetters, DEFAULT_DURATION_SECONDS, clueTypeLabel } from './rosco-data.js';
+import { buildDefaultLetters, DEFAULT_DURATION_SECONDS, clueTypeLabel } from './rosco-data.js?v=2';
 import {
   createGame,
   updateGame,
@@ -7,7 +7,7 @@ import {
   computeRemainingSeconds,
   formatTime,
   computeScore,
-} from './state.js';
+} from './state.js?v=2';
 
 const LOCAL_STORAGE_KEY = 'rosco_last_questions';
 
