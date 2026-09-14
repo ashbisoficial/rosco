@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rosco — Overlay</title>
-  <link rel="stylesheet" href="css/style.css?v=2" />
-  <link rel="stylesheet" href="css/overlay.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/overlay.css?v=3" />
 </head>
 <body>
   <!-- Se muestra solo si no vino ?room=CODIGO en la URL (para probar sin OBS) -->
@@ -17,19 +17,21 @@
     <button id="connectBtn" type="button">Conectar</button>
   </div>
 
-  <div id="roscoStage" class="rosco-stage" hidden>
-    <div id="roscoCircle" class="rosco-circle"></div>
-    <div class="rosco-center">
-      <div id="centerTimer" class="center-timer">04:00</div>
-      <div id="centerClue" class="center-clue"></div>
-      <div id="centerScore" class="center-score"></div>
-    </div>
-    <div id="finalBanner" class="final-banner" hidden>
-      <div class="final-title">¡Rosco terminado!</div>
-      <div id="finalStats" class="final-stats"></div>
+  <div id="overlayContent" class="overlay-content" hidden>
+    <div id="topTimer" class="top-timer">04:00</div>
+    <div id="roscoStage" class="rosco-stage">
+      <div id="roscoCircle" class="rosco-circle"></div>
+      <div class="rosco-center">
+        <div id="centerClue" class="center-clue"></div>
+        <div id="centerScore" class="center-score"></div>
+      </div>
+      <div id="finalBanner" class="final-banner" hidden>
+        <div class="final-title">¡Rosco terminado!</div>
+        <div id="finalStats" class="final-stats"></div>
+      </div>
     </div>
   </div>
 
-  <script type="module" src="js/overlay.js?v=2"></script>
+  <script type="module" src="js/overlay.js?v=3"></script>
 </body>
 </html>

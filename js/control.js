@@ -1,4 +1,4 @@
-import { buildDefaultLetters, DEFAULT_DURATION_SECONDS, clueTypeLabel } from './rosco-data.js?v=2';
+import { buildDefaultLetters, DEFAULT_DURATION_SECONDS, clueTypeLabel } from './rosco-data.js?v=3';
 import {
   createGame,
   updateGame,
@@ -7,7 +7,7 @@ import {
   computeRemainingSeconds,
   formatTime,
   computeScore,
-} from './state.js?v=2';
+} from './state.js?v=3';
 
 const LOCAL_STORAGE_KEY = 'rosco_last_questions';
 
@@ -23,6 +23,7 @@ let roomId = null;
 let activeIndex = -1;
 let unsubscribe = null;
 let tickTimer = null;
+let isEditingLive = false;
 
 // ---------- Pantalla de configuración ----------
 
@@ -94,8 +95,41 @@ document.getElementById('importFile').addEventListener('change', async (e) => {
   e.target.value = '';
 });
 
+document.getElementById('editQuestionsBtn').addEventListener('click', () => {
+  isEditingLive = true;
+  renderSetupTable();
+  document.getElementById('roomInputLabel').hidden = true;
+  document.getElementById('startGameBtn').textContent = '💾 Guardar cambios y volver';
+  gameScreen.hidden = true;
+  setupScreen.hidden = false;
+});
+
 document.getElementById('startGameBtn').addEventListener('click', async () => {
-  const duration = Number(document.getElementById('durationInput').value) || DEFAULT_DURATION_SECONDS;
+  if (isEditingLive) {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(letters));
+
+    const updates = { letters };
+    if (!localTimer.running) {
+      const minutes = Number(document.getElementById('durationInput').value) || localTimer.durationSeconds / 60;
+      const duration = Math.round(minutes * 60);
+      localTimer = { ...localTimer, durationSeconds: duration, remainingSeconds: duration };
+      updates.timer = localTimer;
+    }
+
+    await updateGame(roomId, updates);
+
+    isEditingLive = false;
+    document.getElementById('roomInputLabel').hidden = false;
+    document.getElementById('startGameBtn').textContent = 'Crear partida y empezar a jugar';
+    setupScreen.hidden = true;
+    gameScreen.hidden = false;
+    renderGameList();
+    renderScore();
+    return;
+  }
+
+  const minutes = Number(document.getElementById('durationInput').value) || DEFAULT_DURATION_SECONDS / 60;
+  const duration = Math.round(minutes * 60);
   roomId = (document.getElementById('roomInput').value || '').trim().toUpperCase() || generateRoomCode();
 
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(letters));
@@ -280,6 +314,24 @@ function startWatching() {
     renderScore();
   });
 }
+
+document.getElementById('restartGameBtn').addEventListener('click', () => {
+  if (!confirm('¿Reiniciar el rosco? Se borran los aciertos, fallos y pasapalabras, pero se mantienen las mismas preguntas y la misma sala.')) return;
+
+  letters = letters.map((l) => ({ ...l, status: 'pending' }));
+  activeIndex = -1;
+  localTimer = { ...localTimer, running: false, remainingSeconds: localTimer.durationSeconds, startedAt: null };
+
+  updateGame(roomId, {
+    letters,
+    activeLetterId: null,
+    finished: false,
+    timer: localTimer,
+  });
+
+  renderGameList();
+  renderScore();
+});
 
 document.getElementById('newGameBtn').addEventListener('click', () => {
   if (!confirm('¿Terminar esta partida y volver a la configuración?')) return;

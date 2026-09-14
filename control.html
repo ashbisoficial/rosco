@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rosco — Panel de control</title>
-  <link rel="stylesheet" href="css/style.css?v=2" />
-  <link rel="stylesheet" href="css/control.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/control.css?v=3" />
 </head>
 <body>
   <header class="topbar">
@@ -19,13 +19,13 @@
   <!-- Pantalla de configuración: se arma la partida antes de empezar -->
   <section id="setupScreen" class="panel">
     <div class="setup-row">
-      <label>
+      <label id="roomInputLabel">
         Código de sala
         <input id="roomInput" type="text" maxlength="12" placeholder="se genera solo si lo dejás vacío" />
       </label>
       <label>
-        Duración (segundos)
-        <input id="durationInput" type="number" min="30" step="10" value="240" />
+        Duración (minutos)
+        <input id="durationInput" type="number" min="0.5" step="0.5" value="4" />
       </label>
       <button id="loadSavedBtn" type="button">Cargar últimas preguntas guardadas</button>
       <button id="importBtn" type="button">Importar JSON</button>
@@ -63,18 +63,14 @@
         &nbsp;⏭️ <span id="scorePass">0</span>
         &nbsp;⬜ <span id="scorePending">26</span>
       </div>
-      <button id="newGameBtn" type="button">Nueva partida</button>
+      <button id="editQuestionsBtn" type="button" title="Editá el texto de las preguntas sin perder la sala, el progreso ni el enlace del overlay">✏️ Editar preguntas</button>
+      <button id="restartGameBtn" type="button" title="Vuelve a poner todas las letras en pendiente y el reloj en cero, con las mismas preguntas y la misma sala">🔁 Reiniciar partida</button>
+      <button id="newGameBtn" type="button" title="Vuelve a la pantalla de configuración para armar otra tanda de preguntas">Nueva partida</button>
     </div>
-
-    <p class="hint">
-      Hacé clic en una letra para activarla (se ve resaltada en el overlay), o navegá con
-      <kbd>↑</kbd>/<kbd>↓</kbd>. Resolvé con <kbd>C</kbd> correcto, <kbd>X</kbd> incorrecto,
-      <kbd>P</kbd> pasapalabra, y <kbd>Espacio</kbd> inicia/pausa el reloj.
-    </p>
 
     <ul id="lettersList" class="letters-list"></ul>
   </section>
 
-  <script type="module" src="js/control.js?v=2"></script>
+  <script type="module" src="js/control.js?v=3"></script>
 </body>
 </html>
