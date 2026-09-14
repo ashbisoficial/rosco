@@ -1,0 +1,144 @@
+/* Fondo transparente: pensado para OBS Browser Source */
+html, body {
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.connect-form {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.connect-form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: var(--color-text);
+}
+
+.connect-form button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background: var(--color-active-ring);
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rosco-stage {
+  position: relative;
+  width: min(90vmin, 900px);
+  height: min(90vmin, 900px);
+  margin: 20px auto;
+}
+
+.rosco-circle {
+  position: absolute;
+  inset: 0;
+}
+
+.rosco-letter {
+  position: absolute;
+  width: 9%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  font-size: clamp(14px, 2.4vmin, 28px);
+  font-weight: 800;
+  background: var(--color-pending);
+  color: var(--color-pending-text);
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.rosco-letter.status-correct {
+  background: var(--color-correct);
+  color: #06280f;
+}
+
+.rosco-letter.status-wrong {
+  background: var(--color-wrong);
+  color: #2a0808;
+}
+
+.rosco-letter.status-pass {
+  background: var(--color-pass);
+  color: #2a1c02;
+}
+
+.rosco-letter.active {
+  border-color: var(--color-active-ring);
+  box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.35);
+  transform: translate(-50%, -50%) scale(1.18);
+  z-index: 2;
+}
+
+.rosco-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.center-timer {
+  font-size: clamp(28px, 6vmin, 56px);
+  font-weight: 800;
+  color: #f8fafc;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.center-clue {
+  font-size: clamp(14px, 2.4vmin, 24px);
+  color: #f1f5f9;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  min-height: 1.4em;
+}
+
+.center-score {
+  font-size: clamp(12px, 2vmin, 18px);
+  color: #cbd5e1;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.final-banner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.55);
+  border-radius: 50%;
+}
+
+.final-title {
+  font-size: clamp(22px, 4vmin, 40px);
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.final-stats {
+  font-size: clamp(14px, 2.4vmin, 22px);
+  color: #f1f5f9;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}

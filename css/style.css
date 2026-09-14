@@ -1,0 +1,22 @@
+:root {
+  --color-pending: #35415a;
+  --color-pending-text: #cbd5e1;
+  --color-correct: #22c55e;
+  --color-wrong: #ef4444;
+  --color-pass: #f59e0b;
+  --color-active-ring: #38bdf8;
+  --color-bg: #0f172a;
+  --color-panel: #1e293b;
+  --color-text: #e2e8f0;
+  --color-muted: #94a3b8;
+  font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+}
