@@ -1,5 +1,5 @@
-import { ROSCO_LETTERS, clueTypeLabel } from './rosco-data.js?v=3';
-import { watchGame, computeRemainingSeconds, formatTime, computeScore } from './state.js?v=3';
+import { ROSCO_LETTERS, clueTypeLabel } from './rosco-data.js?v=4';
+import { watchGame, computeRemainingSeconds, formatTime, computeScore } from './state.js?v=4';
 
 const connectForm = document.getElementById('connectForm');
 const overlayContent = document.getElementById('overlayContent');

@@ -1,7 +1,7 @@
-// Alfabeto completo A-Z (26 letras, sin Ñ), para roscos en formato "gamer".
+// Alfabeto completo A-Z + Ñ (27 letras), el formato clásico del rosco en español.
 export const ROSCO_LETTERS = [
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-  'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+  'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 ];
 
 // Plantilla de preguntas por defecto: el host las edita antes de crear la partida.
